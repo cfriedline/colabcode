@@ -39,16 +39,16 @@ class ColabCode:
             self._start_server()
             self._run_lab()
         if self._code:
-            self._install_code()
+            self._install_code(codeserver_version)
             self._install_extensions()
             self._start_server()
             self._run_code()
 
     @staticmethod
-    def _install_code():
+    def _install_code(version: str):
         subprocess.run(["wget", "https://code-server.dev/install.sh"], stdout=subprocess.PIPE)
         subprocess.run(
-            ["sh", "install.sh", "--version", f"{self.codeserver_version}"],
+            ["sh", "install.sh", "--version", f"{version}"],
             stdout=subprocess.PIPE,
         )
 
